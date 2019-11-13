@@ -3,6 +3,8 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -21,7 +23,7 @@ import javax.swing.JTextPane;
 
 class Frame extends JFrame {
 	final JFrame frame = new JFrame();
-	
+    String text = "Null";
     public Frame() {
 
         //Creating the Frame
@@ -68,8 +70,22 @@ class Frame extends JFrame {
         frame.getContentPane().add(BorderLayout.NORTH, mb);
         frame.setVisible(true);
         
-	    String x = tf.getText();
-	    System.out.println(x);
+        //Send button listener
+        send.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               text  = tf.getText();
+               System.out.println(text);
+            }
+        });
+        
+        //Reset button listener
+        reset.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               tf.setText("");
+            }
+        });
     }
     
 	public void init() {
