@@ -31,6 +31,12 @@ class Frame extends JFrame {
     private JTextField textField;
     private JTextField textField_1;
     private JTextField textField_2;
+    private JTextField textField_3;
+    private JTextField textField_4;
+    private JTextField textField_5;
+    private JTextField textField_6;
+    private JTextField textField_7;
+    private JTextField textField_8;
     
     public Frame() {
 
@@ -100,7 +106,7 @@ class Frame extends JFrame {
         frame.getContentPane().add(lblNewLabel_1);
         
         JLabel lblNewLabel_2 = new JLabel("Hp:");
-        lblNewLabel_2.setBounds(290, 387, 71, 14);
+        lblNewLabel_2.setBounds(245, 385, 30, 14);
         frame.getContentPane().add(lblNewLabel_2);
         
         JLabel lblNewLabel_3 = new JLabel("Turn #");
@@ -134,23 +140,23 @@ class Frame extends JFrame {
         frame.getContentPane().add(textField_2);
         
         JLabel lblExp = new JLabel("EXP:");
-        lblExp.setBounds(290, 433, 71, 14);
+        lblExp.setBounds(245, 435, 39, 14);
         frame.getContentPane().add(lblExp);
         
         JLabel lblLvl = new JLabel("LVL:");
-        lblLvl.setBounds(290, 410, 71, 14);
+        lblLvl.setBounds(245, 410, 39, 14);
         frame.getContentPane().add(lblLvl);
         
         JLabel lblShield = new JLabel("Shield:");
-        lblShield.setBounds(371, 433, 71, 14);
+        lblShield.setBounds(357, 435, 71, 14);
         frame.getContentPane().add(lblShield);
         
         JLabel lblWeapon = new JLabel("Weapon:");
-        lblWeapon.setBounds(371, 410, 71, 14);
+        lblWeapon.setBounds(357, 410, 71, 14);
         frame.getContentPane().add(lblWeapon);
         
         JLabel lblBonuses = new JLabel("Bonuses:");
-        lblBonuses.setBounds(371, 387, 71, 14);
+        lblBonuses.setBounds(357, 385, 71, 14);
         frame.getContentPane().add(lblBonuses);
         
         JTextArea textArea_1 = new JTextArea(24, 80);
@@ -161,8 +167,50 @@ class Frame extends JFrame {
         frame.getContentPane().add(textArea_1);
         
         JLabel lblUsersMovecount = new JLabel("User's Movecount:");
-        lblUsersMovecount.setBounds(127, 387, 92, 14);
+        lblUsersMovecount.setBounds(103, 387, 92, 14);
         frame.getContentPane().add(lblUsersMovecount);
+        
+        textField_3 = new JTextField();
+        textField_3.setText("0");
+        textField_3.setEditable(false);
+        textField_3.setColumns(10);
+        textField_3.setBounds(205, 384, 21, 20);
+        frame.getContentPane().add(textField_3);
+        
+        textField_4 = new JTextField();
+        textField_4.setText("0");
+        textField_4.setEditable(false);
+        textField_4.setColumns(10);
+        textField_4.setBounds(295, 385, 21, 20);
+        frame.getContentPane().add(textField_4);
+        
+        textField_5 = new JTextField();
+        textField_5.setText("0");
+        textField_5.setEditable(false);
+        textField_5.setColumns(10);
+        textField_5.setBounds(295, 410, 21, 20);
+        frame.getContentPane().add(textField_5);
+        
+        textField_6 = new JTextField();
+        textField_6.setText("0");
+        textField_6.setEditable(false);
+        textField_6.setColumns(10);
+        textField_6.setBounds(295, 435, 21, 20);
+        frame.getContentPane().add(textField_6);
+        
+        textField_7 = new JTextField();
+        textField_7.setText("0");
+        textField_7.setEditable(false);
+        textField_7.setColumns(10);
+        textField_7.setBounds(421, 435, 21, 20);
+        frame.getContentPane().add(textField_7);
+        
+        textField_8 = new JTextField();
+        textField_8.setText("0");
+        textField_8.setEditable(false);
+        textField_8.setColumns(10);
+        textField_8.setBounds(421, 410, 21, 20);
+        frame.getContentPane().add(textField_8);
         frame.setVisible(true);
     }
     
