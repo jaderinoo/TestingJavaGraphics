@@ -9,8 +9,7 @@ public class Main {
 	    
 	    
 	    System.out.println("Type 1");
-	    frame.getFrame();
-	    int number = scanner.nextInt();
+	    int number = Frame.getNumber();
 	    
 	    if(number == 1) {
 		    printTest();
