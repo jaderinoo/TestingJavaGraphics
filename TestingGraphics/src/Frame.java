@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,11 +27,13 @@ import javax.swing.SwingConstants;
 class Frame extends JFrame {
 	final JFrame frame = new JFrame();
     String text = "Null";
-    static int number;
+    int number = 0;
+    int enemies = 0;
+    int userInput = 0;
     private JTable table;
     private JTextField textField;
-    private JTextField textField_1;
-    private JTextField textField_2;
+    private JTextField turnNumber;
+    private JTextField enemyCount;
     private JTextField textField_3;
     private JTextField textField_4;
     private JTextField textField_5;
@@ -42,7 +45,7 @@ class Frame extends JFrame {
 
         //Creating the Frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(650, 530);
+        frame.setSize(650, 588);
 
         //Creating the panel at bottom and adding components
         JPanel panel = new JPanel(); // the panel is not visible in output
@@ -91,9 +94,9 @@ class Frame extends JFrame {
         send.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-               text  = tf.getText();
-               number = Integer.parseInt(text);
-               System.out.println("sent");
+                text  = tf.getText();
+            	System.out.println("sent");
+            	setUserInput(text);
             }
         });
         
@@ -125,19 +128,19 @@ class Frame extends JFrame {
         frame.getContentPane().add(textField);
         textField.setColumns(10);
         
-        textField_1 = new JTextField();
-        textField_1.setText("0");
-        textField_1.setEditable(false);
-        textField_1.setColumns(10);
-        textField_1.setBounds(421, 8, 21, 20);
-        frame.getContentPane().add(textField_1);
+        turnNumber = new JTextField();
+        turnNumber.setText("0");
+        turnNumber.setEditable(false);
+        turnNumber.setColumns(10);
+        turnNumber.setBounds(421, 8, 21, 20);
+        frame.getContentPane().add(turnNumber);
         
-        textField_2 = new JTextField();
-        textField_2.setText("0");
-        textField_2.setEditable(false);
-        textField_2.setColumns(10);
-        textField_2.setBounds(523, 8, 21, 20);
-        frame.getContentPane().add(textField_2);
+        enemyCount = new JTextField();
+        enemyCount.setText("0");
+        enemyCount.setEditable(false);
+        enemyCount.setColumns(10);
+        enemyCount.setBounds(523, 8, 21, 20);
+        frame.getContentPane().add(enemyCount);
         
         JLabel lblExp = new JLabel("EXP:");
         lblExp.setBounds(245, 435, 39, 14);
@@ -214,8 +217,37 @@ class Frame extends JFrame {
         frame.setVisible(true);
     }
     
-    public static int getNumber() {
-    	System.out.print("Number: " + number);
+    public int setTurnNumber(int x) {
+	    this.number = x;
+	    turnNumber.setText(Integer.toString(number));
+        return number;
+    }
+    
+    public int setEnemies(int x) {
+    	this.enemies = x; 
+    	enemyCount.setText(Integer.toString(enemies));
+        return enemies;
+    }
+    
+    public int getEnemys() {
+        return enemies;
+    }
+    
+    public int setUserInput(String text) {
+        userInput = Integer.parseInt(text);
+    	getUserInput();
+        return userInput;
+    }
+    
+    public int getUserInput() {
+    	System.out.println("usrinpt: " + userInput);
+    	
+        return userInput;
+    }
+    
+    
+    
+    public int getTurnNumber() {
         return number;
     }
     
