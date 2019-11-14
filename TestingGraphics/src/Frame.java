@@ -240,7 +240,7 @@ class Frame extends JFrame {
     }
     
     public int getUserInput() {
-    	System.out.println("usrinpt: " + userInput);
+    //	System.out.println("usrinpt: " + userInput);
     	
         return userInput;
     }

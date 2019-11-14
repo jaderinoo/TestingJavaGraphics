@@ -16,8 +16,15 @@ public class Main {
 	    
 	    System.out.println("Type 1");
 	    int turnNumber = frame.getTurnNumber();
+	    int x = 0;
 	    
-	    
+	    do{
+	    	x = frame.getUserInput();
+	    	Thread.sleep(500);
+	    	System.out.println(x);
+	    }while(x == 0);
+	    	
+	    printTest(frame , turnNumber);
 	    
 	    frame.setEnemies(2);
 	    
