@@ -82,6 +82,7 @@ class Frame extends JFrame {
         reset.setBounds(557, 5, 67, 23);
         panel.add(reset);
         
+        
         //Reset button listener
         reset.addActionListener(new ActionListener(){
             @Override
