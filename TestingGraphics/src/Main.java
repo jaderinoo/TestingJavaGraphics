@@ -7,26 +7,38 @@ public class Main {
 	    frame.setTurnNumber(1);
 	    frame.setEnemies(2);
 	    
-	    System.out.println("Type an Int");
-	    grabInput(frame);
-	    System.out.println(frame.getUserIntInput());
+	    grabInput(frame,0);
 	    printTest(frame , frame.getTurnNumber());
-		frame.text = null;
 	    
-	    System.out.println("Type a String");
-	    grabInput(frame);
-	    System.out.println(frame.getUserStringInput());
+	    grabInput(frame,1);
 	    printTest(frame , frame.getTurnNumber());
-	    frame.text = null;
-
+	    
 	}
 
 	
-	public static void grabInput(Frame frame) throws InterruptedException {
+	public static void grabInput(Frame frame, int type) throws InterruptedException {
+		
+		//If type == 0, Grab int
+		//If type == 1, Grab String
+		if(type == 0){
+		    System.out.println("Int Selection: ");
+
+		}else if(type == 1) {
+		    System.out.println("String Selection: ");
+		}
+		
+		//Wait for user input
 		do{
 		    Thread.sleep(750);
 		}while(frame.text == null);
-		System.out.println("Input taken");
+		
+		if(type == 0){
+		    System.out.println("Username: " + frame.getUserIntInput());
+
+		}else if(type == 1) {
+		    System.out.println("Username: " + frame.getUserStringInput());
+		}
+		frame.text = null;
 	}
 	
 	public static void printTest(Frame frame, int turnNumber) throws InterruptedException {
