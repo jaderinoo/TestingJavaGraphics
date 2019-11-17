@@ -26,10 +26,11 @@ import javax.swing.SwingConstants;
 
 class Frame extends JFrame {
 	final JFrame frame = new JFrame();
-    String text = "Null";
+    String text = null;
     int number = 0;
     int enemies = 0;
-    int userInput = 0;
+    int userIntInput = 0;
+    String userStringInput = "";
     private JTable table;
     private JTextField textField;
     private JTextField turnNumber;
@@ -81,25 +82,6 @@ class Frame extends JFrame {
         JButton reset = new JButton("Reset");
         reset.setBounds(557, 5, 67, 23);
         panel.add(reset);
-        
-        
-        //Reset button listener
-        reset.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               tf.setText("");
-            }
-        });
-        
-        //Send button listener
-        send.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                text  = tf.getText();
-            	System.out.println("sent");
-            	setUserInput(text);
-            }
-        });
         
         JLabel lblNewLabel = new JLabel("Map view:");
         lblNewLabel.setBounds(10, 11, 71, 14);
@@ -216,6 +198,42 @@ class Frame extends JFrame {
         textField_8.setBounds(421, 410, 21, 20);
         frame.getContentPane().add(textField_8);
         frame.setVisible(true);
+        
+        //Reset button listener
+        reset.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               tf.setText("");
+            }
+        });
+        
+        //Send button listener
+        send.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                text  = tf.getText();
+                tf.setText("");
+            	setUserInput(text);
+            }
+        });
+    }
+  
+    public void setUserInput(String input) {
+    	if(input.matches("^\\d+(\\.\\d+)?")) {
+    		userIntInput = Integer.parseInt(input);
+    	} else {
+    		userStringInput = input;
+    	}
+    }
+    
+    public int getUserIntInput() {
+    	//Returns the userinput as an Int
+        return userIntInput;
+    }
+    
+    public String getUserStringInput() {
+    	//Returns the userinput as a String
+        return userStringInput;
     }
     
     public int setTurnNumber(int x) {
@@ -233,20 +251,6 @@ class Frame extends JFrame {
     public int getEnemys() {
         return enemies;
     }
-    
-    public int setUserInput(String text) {
-        userInput = Integer.parseInt(text);
-    	getUserInput();
-        return userInput;
-    }
-    
-    public int getUserInput() {
-    //	System.out.println("usrinpt: " + userInput);
-    	
-        return userInput;
-    }
-    
-    
     
     public int getTurnNumber() {
         return number;

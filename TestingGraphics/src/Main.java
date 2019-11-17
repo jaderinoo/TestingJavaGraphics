@@ -1,43 +1,38 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.Scanner;
-
-import javax.swing.JFrame;
 
 public class Main {
 	//Initial Commit
 	public static void main(String[] args) throws InterruptedException {
 		Frame frame = new Frame();
-	    frame.init();
-	    
+	    frame.init();  
 	    frame.setTurnNumber(1);
-	    
-	    System.out.println("Type 1");
-	    int turnNumber = frame.getTurnNumber();
-	    int x = 0;
-	    
-	    do{
-	    	x = frame.getUserInput();
-	    	Thread.sleep(500);
-	    	System.out.println(x);
-	    }while(x == 0);
-	    	
-	    printTest(frame , turnNumber);
-	    
 	    frame.setEnemies(2);
 	    
+	    System.out.println("Type an Int");
+	    grabInput(frame);
+	    System.out.println(frame.getUserIntInput());
+	    printTest(frame , frame.getTurnNumber());
+		frame.text = null;
 	    
-	    
-	    
+	    System.out.println("Type a String");
+	    grabInput(frame);
+	    System.out.println(frame.getUserStringInput());
+	    printTest(frame , frame.getTurnNumber());
+	    frame.text = null;
+
+	}
+
+	
+	public static void grabInput(Frame frame) throws InterruptedException {
+		do{
+		    Thread.sleep(750);
+		}while(frame.text == null);
+		System.out.println("Input taken");
 	}
 	
 	public static void printTest(Frame frame, int turnNumber) throws InterruptedException {
 		frame.enemies--;
-		System.out.println("printTest");
 		
-		while(turnNumber != 10) {
+		for (int i = 0; i < 5; i++) {
 			Thread.sleep(500);
 			turnNumber++;
 			frame.setTurnNumber(turnNumber);
