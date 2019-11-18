@@ -8,10 +8,10 @@ public class Main {
 	    frame.setEnemies(2);
 	    
 	    grabInput(frame,0);
-	    printTest(frame , frame.getTurnNumber());
+	    printTest(frame , frame.getTurnNumber(), frame.getUserIntInput());
 	    
-	    grabInput(frame,1);
-	    printTest(frame , frame.getTurnNumber());
+	    grabInput(frame,0);
+	    printTest(frame , frame.getTurnNumber(), frame.getUserIntInput());
 	    
 	}
 
@@ -32,6 +32,7 @@ public class Main {
 		    Thread.sleep(750);
 		}while(frame.text == null);
 		
+		//After grabbing the selection, send it to user and reset text to null for later
 		if(type == 0){
 		    System.out.println("Username: " + frame.getUserIntInput());
 
@@ -41,10 +42,10 @@ public class Main {
 		frame.text = null;
 	}
 	
-	public static void printTest(Frame frame, int turnNumber) throws InterruptedException {
+	public static void printTest(Frame frame, int turnNumber, int userInput) throws InterruptedException {
 		frame.enemies--;
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < userInput; i++) {
 			Thread.sleep(500);
 			turnNumber++;
 			frame.setTurnNumber(turnNumber);
