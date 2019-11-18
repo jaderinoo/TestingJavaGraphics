@@ -33,7 +33,7 @@ class Frame extends JFrame {
     String userStringInput = "";
     private JTable table;
     private JTextField textField;
-    private JTextArea mapArea;
+    public JTextArea mapArea;
     private JTextField turnNumber;
     private JTextField enemyCount;
     private JTextField textField_3;
@@ -61,7 +61,7 @@ class Frame extends JFrame {
         panel.add(lblCommandLine); // Components Added using Flow Layout
         panel.add(tf);
 
-		JTextArea mapArea = new JTextArea(24, 80);
+		mapArea = new JTextArea(24, 80);
 		mapArea.setBounds(10, 36, 432, 283);
 		mapArea.setBackground(Color.LIGHT_GRAY);
 		mapArea.setForeground(Color.black);
@@ -200,6 +200,9 @@ class Frame extends JFrame {
         frame.getContentPane().add(textField_8);
         frame.setVisible(true);
         
+        //Sets send as the default key
+        frame.getRootPane().setDefaultButton(send);
+        
         //Reset button listener
         reset.addActionListener(new ActionListener(){
             @Override
@@ -238,7 +241,12 @@ class Frame extends JFrame {
     }
     
     public void setMapArea() {
-    	mapArea.append((String)"Hello");
+        this.mapArea.append("Hello");
+    }
+    
+    public void clearMapArea() {
+        this.mapArea.selectAll();
+        this.mapArea.replaceSelection("");
     }
     
     public int setTurnNumber(int x) {
@@ -253,7 +261,7 @@ class Frame extends JFrame {
         return enemies;
     }
     
-    public int getEnemys() {
+    public int getEnemies() {
         return enemies;
     }
     

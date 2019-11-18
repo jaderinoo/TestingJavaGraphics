@@ -51,6 +51,7 @@ public class Main extends JFrame {
 			turnNumber++;
 			frame.setTurnNumber(turnNumber);
 		}
+	    frame.setEnemies((frame.enemies--));
 		frame.setMapArea();
 	}
 
