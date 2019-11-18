@@ -1,5 +1,6 @@
+import javax.swing.JFrame;
 
-public class Main {
+public class Main extends JFrame {
 	//Initial Commit
 	public static void main(String[] args) throws InterruptedException {
 		Frame frame = new Frame();
@@ -50,6 +51,7 @@ public class Main {
 			turnNumber++;
 			frame.setTurnNumber(turnNumber);
 		}
+		frame.setMapArea();
 	}
 
 }

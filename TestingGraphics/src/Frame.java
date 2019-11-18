@@ -33,6 +33,7 @@ class Frame extends JFrame {
     String userStringInput = "";
     private JTable table;
     private JTextField textField;
+    private JTextArea mapArea;
     private JTextField turnNumber;
     private JTextField enemyCount;
     private JTextField textField_3;
@@ -60,19 +61,19 @@ class Frame extends JFrame {
         panel.add(lblCommandLine); // Components Added using Flow Layout
         panel.add(tf);
 
-		JTextArea textArea = new JTextArea(24, 80);
-		textArea.setBounds(10, 36, 432, 283);
-		textArea.setBackground(Color.LIGHT_GRAY);
-		textArea.setForeground(Color.black);
-		textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
+		JTextArea mapArea = new JTextArea(24, 80);
+		mapArea.setBounds(10, 36, 432, 283);
+		mapArea.setBackground(Color.LIGHT_GRAY);
+		mapArea.setForeground(Color.black);
+		mapArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
 		System.setOut(new PrintStream(new OutputStream() {
     	@Override
     	public void write(int b) throws IOException {
-    		textArea.append(String.valueOf((char) b));
+    		mapArea.append(String.valueOf((char) b));
     	}
     }));
     	frame.getContentPane().setLayout(null);
-    	frame.getContentPane().add(textArea);
+    	frame.getContentPane().add(mapArea);
 
         //Adding Components to the frame.
         frame.getContentPane().add(panel);
@@ -234,6 +235,10 @@ class Frame extends JFrame {
     public String getUserStringInput() {
     	//Returns the userinput as a String
         return userStringInput;
+    }
+    
+    public void setMapArea() {
+    	mapArea.append((String)"Hello");
     }
     
     public int setTurnNumber(int x) {
