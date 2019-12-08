@@ -74,6 +74,7 @@ public class Main {
 			turnNumber++;
 			frame.setTurnNumber(turnNumber);
 		}
+	    frame.setEnemies((frame.enemies--));
 		frame.setMapArea();
 	}
 
