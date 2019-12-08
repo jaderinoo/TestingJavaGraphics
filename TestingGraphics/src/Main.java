@@ -1,21 +1,44 @@
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
-public class Main extends JFrame {
+public class Main {
 	//Initial Commit
-	public static void main(String[] args) throws InterruptedException {
-		Frame frame = new Frame();
-	    frame.init();  
-	    frame.setTurnNumber(1);
-	    frame.setEnemies(2);
-	    
-	    grabInput(frame,0);
-	    printTest(frame , frame.getTurnNumber(), frame.getUserIntInput());
-	    
-	    grabInput(frame,0);
-	    printTest(frame , frame.getTurnNumber(), frame.getUserIntInput());
-	    
-	}
 
+    public static void main(String[] args) throws IOException {
+        JFrame frame = buildFrame();
+
+        final BufferedImage image = ImageIO.read(new File("src\\tilesets\\Player.png"));
+
+        JPanel pane = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(image, 16, 16, null);
+            }
+        };
+
+
+        frame.add(pane);
+    }
+
+
+    private static JFrame buildFrame() {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(200, 200);
+        frame.setVisible(true);
+        return frame;
+    }
+
+	
 	
 	public static void grabInput(Frame frame, int type) throws InterruptedException {
 		
