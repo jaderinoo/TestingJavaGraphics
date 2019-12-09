@@ -3,6 +3,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -11,33 +12,46 @@ import javax.swing.WindowConstants;
 
 public class Main {
 	//Initial Commit
+    static JFrame frame = MapSpace.mapSpace();
+    
+    static int row = 0;
+    static int col = 0;
+    
+    public static void main(String[] args) throws IOException, InterruptedException {
 
-    public static void main(String[] args) throws IOException {
-        JFrame frame = buildFrame();
+        Scanner sc = new Scanner(System.in); 
+
+    	paint();
+
+    	while(row <= 30) {
+    		System.out.println("row + ?");
+    		row = row + sc.nextInt();
+    	}
+
+    
+
+
+    }
+
+
+    public static void paint() throws IOException {
 
         final BufferedImage image = ImageIO.read(new File("src\\tilesets\\Player.png"));
-
+        
         JPanel pane = new JPanel() {
+        	
             @Override
+            
             protected void paintComponent(Graphics g) {
+            	super.removeAll();
                 super.paintComponent(g);
-                g.drawImage(image, 16, 16, null);
+                super.updateUI();
+                g.drawImage(image, row*16, col*16, null);
             }
         };
 
-
         frame.add(pane);
     }
-
-
-    private static JFrame buildFrame() {
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(200, 200);
-        frame.setVisible(true);
-        return frame;
-    }
-
 	
 	
 	public static void grabInput(Frame frame, int type) throws InterruptedException {
