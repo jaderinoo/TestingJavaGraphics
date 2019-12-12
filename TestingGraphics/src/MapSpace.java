@@ -42,26 +42,21 @@ public class MapSpace {
             public void keyPressed(KeyEvent e) {
             	
             	if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    System.out.println("Up");
-                    Main.row++;
-                    System.out.println(Main.row);
-                    try {
-						Main.paint();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+            		if(Main.selection == 0) {
+            			Main.selection++;
+                        if (Main.selection == 1) {
+                        	System.out.println("Load Game");
+                        }
+            		}
+                   
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                	System.out.println("Down");
-                	Main.row--;
-                	System.out.println(Main.row);
-                	try {
-						Main.paint();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+                	if(Main.selection == 1 ) {
+            			Main.selection--;
+            			if (Main.selection == 0) {
+                        	System.out.println("New Game");
+                        }
+            		}
                 }
             }
         });
@@ -76,6 +71,13 @@ public class MapSpace {
             @Override
             public void actionPerformed(ActionEvent e) {
             	System.out.println("Enter");
+            	if(Main.selection == 0) {
+            		Main.newGame();
+            	}
+            	
+            	if(Main.selection == 1) {
+            		Main.loadGame();
+            	}
             }
         });
 		return frame;

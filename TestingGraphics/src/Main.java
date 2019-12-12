@@ -16,9 +16,26 @@ public class Main {
     
     static int row = 0;
     static int col = 0;
+    static int selection = 0;
     
     public static void main(String[] args) throws IOException, InterruptedException {
     	paint();
+    	
+    	System.out.println("Please Select an Option:\n"
+				+ " 1 - New Game\n"
+				+ " 2 - Load Base Game");
+
+		System.out.print("Selection: ");
+		selection = 0;
+		
+    }
+    
+    public static void newGame() {
+    	System.out.println("newGame");
+    }
+    
+    public static void loadGame() {
+    	System.out.println("loadGame");
     }
 
 
