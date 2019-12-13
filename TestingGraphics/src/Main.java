@@ -25,7 +25,7 @@ import javax.swing.WindowConstants;
 
 public class Main {
 	//Initial Commit
-   // static JFrame frame = Frame.frame();
+    static JFrame frame = Frame.frame();
     
     static int row = 0;
     static int col = 0;
@@ -34,6 +34,10 @@ public class Main {
     @SuppressWarnings("unchecked")
 	public static void main(String[] args) throws IOException, InterruptedException, org.json.simple.parser.ParseException {
 
+    	
+    	frame.add(Frame.mainMenu());
+    	
+    	
     	ArrayList<Player> playerList = new ArrayList<Player>();
     	ArrayList<Player> playerList2 = new ArrayList<Player>();
     	
@@ -58,7 +62,12 @@ public class Main {
     	saveUpdater(playerList2, "test");
     	
     	System.out.println("After name change: " + playerList2.get(0).getName());
+    	
+ 
+    	
+    	
     }
+
 
 
     @SuppressWarnings("unchecked")
@@ -132,6 +141,13 @@ public class Main {
     }
     
     
+    public static void waiter() {
+    	Scanner sc = new Scanner(System.in); 
+    	  
+    	System.out.println("Waiting lmao");
+        // String input 
+        String name = sc.nextLine(); 
+    }
     
     
     
