@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.JButton;
@@ -16,10 +17,8 @@ import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 
 public class Frame{
-    /**
-     * @wbp.parser.entryPoint
-     */
     static JFrame frame = new JFrame();
+    static JLabel lblError = new JLabel("");
     
     static JFrame frame() {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -31,9 +30,6 @@ public class Frame{
 		return frame;
     }
 
-    /**
-     * @wbp.parser.entryPoint
-     */
     static JPanel mainMenu() {
 
         JPanel menuPane = new JPanel();
@@ -63,11 +59,55 @@ public class Frame{
         lblAgoss.setBounds(16, 10, 471, 126);
         menuPane.add(lblAgoss);
         
-        
         btnNewGame.addActionListener(new ActionListener(){
         	@Override 
         	public void actionPerformed(ActionEvent e) {
         		menuPane.setVisible(false);
+        		try {
+					//Main.newGameNameSelection();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	}	
+        });
+        
+        btnLoadBaseGame.addActionListener(new ActionListener(){
+        	@Override 
+        	public void actionPerformed(ActionEvent e) {
+        		menuPane.setVisible(false);
+        		try {
+					//Main.loadGame(2, frame);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	//Load base game
+        	}	
+        });
+        
+        btnLoadMap.addActionListener(new ActionListener(){
+        	@Override 
+        	public void actionPerformed(ActionEvent e) {
+        		menuPane.setVisible(false);
+        		try {
+					//Main.loadGame(0, frame);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	//Load specific map
+        	}	
+        });
+        
+        btnLoadMapList.addActionListener(new ActionListener(){
+        	@Override 
+        	public void actionPerformed(ActionEvent e) {
+        		menuPane.setVisible(false);
+        		try {
+					//Main.loadGame(1, frame);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	//Load Map list
         	}	
         });
         
@@ -75,7 +115,65 @@ public class Frame{
     return menuPane;
     }
     
+    /**
+     * @wbp.parser.entryPoint
+     */
+    static JPanel newGame() {
+    	
+    	JPanel newGamePane = new JPanel();
+    	newGamePane.setLayout(null);
+    	newGamePane.setSize(500,300);
+        
+        JButton btnContinue = new JButton("Continue");
+        btnContinue.setBounds(295, 121, 144, 32);
+        newGamePane.add(btnContinue);
+        
+        JButton btnReturn = new JButton("Return to Menu");
+        btnReturn.setBounds(10, 121, 144, 32);
+        newGamePane.add(btnReturn);
+        
+        JTextField textName = new JTextField();
+        textName.setBounds(232, 20, 207, 20);
+        newGamePane.add(textName);
+        textName.setColumns(10);
+        
+        JLabel lblPleaseEnterA = new JLabel("Please Enter a Player Name:");
+        lblPleaseEnterA.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblPleaseEnterA.setBounds(10, 11, 315, 32);
+        newGamePane.add(lblPleaseEnterA);
+        
+        
+        lblError.setBounds(10, 54, 207, 20);
+        newGamePane.add(lblError);
+        
+        
+        btnContinue.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		String name  = textName.getText();
+        		try {
+					//Main.newGame(name);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+        	}
+        });
+        
+        btnReturn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		return;
+        	}
+        });
+
+    	return newGamePane;
+    }
     
+    
+    
+    
+    //ErrorLabel----------------------------------------------------------
+    public static void setlblError() {
+    	lblError.setText("A save with this name already exists, please select another name.");
+    }
 }
 
 

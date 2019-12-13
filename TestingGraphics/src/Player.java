@@ -14,8 +14,12 @@ public class Player {
 	    	this.str = str;
 	   }
 		
-		public Object getName() {
+		public String getName() {
 	        return name;
+	    }
+		
+		public void setName(String tempName) {
+	        this.name = tempName;
 	    }
 		
 	    public int getStr() {
