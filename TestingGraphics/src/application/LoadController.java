@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class MenuSceneController
+public class LoadController
 {
 	@FXML
 	public Button nextBtn;
@@ -31,7 +31,6 @@ public class MenuSceneController
 	@FXML
 	private void initialize()
 	{
-        
         nextBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

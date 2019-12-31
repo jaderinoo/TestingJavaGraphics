@@ -19,6 +19,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application
 {
+	static Scene menuScene;
+	static Scene loadScene;
+	static Stage window;
+	
 	public static void main(String[] args)
 	{
 		Application.launch(args);
@@ -27,21 +31,30 @@ public class Main extends Application
 	@Override
 	public void start(Stage stage) throws IOException
 	{
-		URL url = getClass().getResource("MenuScene.fxml");
-	        if (url == null) {
-	            System.out.println("Can't load FXML file");
-	            Platform.exit();
-	        }
-	    VBox root = (VBox) FXMLLoader.load(url);
+		window = stage;
+		
+	    //Setup scenes   
+		VBox menuVBox = (VBox) FXMLLoader.load(getClass().getResource("MenuScene.fxml"));
+		VBox loadVbox = (VBox) FXMLLoader.load(getClass().getResource("loadScene.fxml"));
         
 		// Create the Scene
-		Scene scene = new Scene(root);
-		// Set the Scene to the Stage
-		stage.setScene(scene);
-		// Set the Title to the Stage
-		stage.setTitle("JavaFx Testing Environment");
-		// Display the Stage
-		stage.show();
+		menuScene = new Scene(menuVBox);
+		loadScene = new Scene(loadVbox);
 		
+		// Set the Scene to the Stage
+		window.setScene(menuScene);
+		// Set the Title to the Stage
+		window.setTitle("JavaFx Testing Environment");
+		// Display the Stage
+		window.show();
 	}
+	
+	public static void loadScene() {
+		window.setScene(loadScene);
+	}
+	
+	public static void menuScene() {
+		window.setScene(menuScene);
+	}
+
 }
