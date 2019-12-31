@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
-public class FxFXMLExample1 extends Application
+public class Main extends Application
 {
 	public static void main(String[] args)
 	{
@@ -26,13 +27,12 @@ public class FxFXMLExample1 extends Application
 	@Override
 	public void start(Stage stage) throws IOException
 	{
-		URL url = getClass().getResource("FxFXMLExample1.fxml");
+		URL url = getClass().getResource("MenuScene.fxml");
 	        if (url == null) {
 	            System.out.println("Can't load FXML file");
 	            Platform.exit();
 	        }
 	    VBox root = (VBox) FXMLLoader.load(url);
-        
         
 		// Create the Scene
 		Scene scene = new Scene(root);
