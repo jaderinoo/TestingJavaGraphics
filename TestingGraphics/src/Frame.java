@@ -10,12 +10,14 @@ import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JWindow;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
-
+import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -30,6 +32,10 @@ public class Frame extends JDialog{
     static JLabel lblError = new JLabel("");
     
     static JFrame frame() {
+    	   JWindow win = new JWindow();
+   
+    	    win.setSize(200,200);
+    	    win.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(500,300);
         frame.setVisible(true);
@@ -72,34 +78,26 @@ public class Frame extends JDialog{
         JButton btnLoadMapList = new JButton("Load Map List");
         btnLoadMapList.setBounds(256, 205, 231, 41);
         menuPane.add(btnLoadMapList);
+
         
         btnNewGame.addActionListener(new ActionListener(){
         	@Override 
         	public void actionPerformed(ActionEvent e) {
-        		panel.setBackground(new Color(0,0,0,50));
         		try {
-					Thread.sleep(500);
-				} catch (InterruptedException e1) {
+        			fadeOut();
+					//Main.loadGame(0, frame);
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-        		panel.setBackground(new Color(0,0,0,75));
-        		try {
-					Thread.sleep(500);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-        		panel.setBackground(new Color(0,0,0,100));
+        		;
         	}});
         		
         
         btnLoadBaseGame.addActionListener(new ActionListener(){
         	@Override 
         	public void actionPerformed(ActionEvent e) {
-        		menuPane.setVisible(false);
         		try {
-					//Main.loadGame(2, frame);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -193,61 +191,108 @@ public class Frame extends JDialog{
     public static void setlblError() {
     	lblError.setText("A save with this name already exists, please select another name.");
     }
-    
-	Timer timerOut = new Timer(200,  e -> fadeOut());
-	Timer timerIn = new Timer(200,  e -> fadeIn());
-    private float alfa = 1;
-    int counter = 0;
-    private JLabel label;
-    private boolean isFadeIn = true;
-    private JButton fadeIn, fadeOut;
-    
-    private float alpha;
 
     
-    void fadeIn() {
-    	timerIn.start();
-    	timerIn.setInitialDelay(0);
-    	
-        if(counter == 7) {
-        	timerIn.stop();
-        	
-        }
-    	counter++;
-    	System.out.println(counter);
-        alfa = isFadeIn ? alfa + 0.1f : alfa -0.1f;
-        if(alfa <=0 ) {
-            alfa = 0; isFadeIn = true;
-        }
-
-        fadeIn.setEnabled(! isFadeIn); fadeOut.setEnabled(isFadeIn);
-        label.setText("Alfa is " + alfa);
-        setOpacity(alfa); //set JDialog opacity
+    static float alpha;
+    static Timer timerIn;
+    static Timer timerOut;
+    public static void fadeOut() {
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(0,0,0,0));
+        panel.setSize(500,300);
+        
+        frame.add(panel);
+        timerOut = new Timer(150, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                alpha = alpha + 0.1f;
+                System.out.println(alpha);
+                panel.setBackground(new Color(0,0,0,alpha));
+                if(alpha >= 1.0f) {
+                	timerOut.stop();
+                	panel.setVisible(false);
+                	
+                }  
+            }
+        });
+        timerOut.setInitialDelay(0);
+        timerOut.start();        
     }
     
-    void fadeOut() {
-    	timerOut.start();
-    	timerOut.setInitialDelay(0);
-    	
-        if(counter == 7) {
-        	timerOut.stop();
-        	
-        }
-    	counter++;
-    	System.out.println(counter);
-        alfa = isFadeIn ? alfa + 0.1f : alfa -0.1f;
-        if(alfa >= 1) {
-            alfa = 1; isFadeIn = false;
-        }
-
-        fadeIn.setEnabled(! isFadeIn); fadeOut.setEnabled(isFadeIn);
-        label.setText("Alfa is " + alfa);
-        setOpacity(alfa); //set JDialog opacity
+    public static void fadeIn() {
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(0,0,0,150));
+        panel.setSize(500,300);
+        
+        frame.add(panel);
+        timerIn = new Timer(150, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                alpha = alpha - 0.1f;
+                System.out.println(alpha);
+                panel.setBackground(new Color(0,0,0,alpha));
+                if(alpha <= 0.1f) {
+                	timerIn.stop();
+                }  
+            }
+        });
+        timerIn.setInitialDelay(0);
+        timerIn.start();        
     }
 }
 
+/*
+Timer timerOut = new Timer(200,  e -> fadeOut());
+Timer timerIn = new Timer(200,  e -> fadeIn());
+private float alfa = 1;
+int counter = 0;
+private JLabel label;
+private boolean isFadeIn = true;
+private JButton fadeIn, fadeOut;
+
+private float alpha;
 
 
+void fadeIn() {
+	timerIn.start();
+	timerIn.setInitialDelay(0);
+	
+    if(counter == 7) {
+    	timerIn.stop();
+    	
+    }
+	counter++;
+	System.out.println(counter);
+    alfa = isFadeIn ? alfa + 0.1f : alfa -0.1f;
+    if(alfa <=0 ) {
+        alfa = 0; isFadeIn = true;
+    }
+
+    fadeIn.setEnabled(! isFadeIn); fadeOut.setEnabled(isFadeIn);
+    label.setText("Alfa is " + alfa);
+    setOpacity(alfa); //set JDialog opacity
+}
+
+void fadeOut() {
+	timerOut.start();
+	timerOut.setInitialDelay(0);
+	
+    if(counter == 7) {
+    	timerOut.stop();
+    	
+    }
+	counter++;
+	System.out.println(counter);
+    alfa = isFadeIn ? alfa + 0.1f : alfa -0.1f;
+    if(alfa >= 1) {
+        alfa = 1; isFadeIn = false;
+    }
+
+    fadeIn.setEnabled(! isFadeIn); fadeOut.setEnabled(isFadeIn);
+    label.setText("Alfa is " + alfa);
+    setOpacity(alfa); //set JDialog opacity
+}
+*/
 
 /*
  * //Send button listener send.addActionListener(new ActionListener(){

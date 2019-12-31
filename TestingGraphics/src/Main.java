@@ -17,55 +17,41 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 
 public class Main {
-	//Initial Commit
-    static JFrame frame = Frame.frame();
     
     static int row = 0;
     static int col = 0;
     static int selection = 0;
     
-    @SuppressWarnings("unchecked")
-	public static void main(String[] args) throws IOException, InterruptedException, org.json.simple.parser.ParseException {
-
-    	
-    	frame.add(Frame.mainMenu());
-    	
-    	
-    	ArrayList<Player> playerList = new ArrayList<Player>();
-    	ArrayList<Player> playerList2 = new ArrayList<Player>();
-    	
-    	//Create Players
-    	Player player = new Player("Jad", 5);
-    	Player player2 = new Player("Art", 20);
-    	Player player3 = new Player("Karl", 12);
-    	
-    	//Add players to player list
-    	playerList.add(player);
-    	playerList.add(player2);
-    	playerList.add(player3);
-    	
-    	saveUpdater(playerList,"test");
-  
-    	playerList2 = saveReader("test");
-
-    	
-    	System.out.println("Before name change: " + playerList2.get(0).getName());
-    	
-    	playerList2.get(0).setName("Axe");
-    	saveUpdater(playerList2, "test");
-    	
-    	System.out.println("After name change: " + playerList2.get(0).getName());
-    	
+    public static void main(String[] args) {
+        JFrame f=new JFrame("Test slider component app");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
-    	
-    	
+        f.getContentPane().add(initSlider());
+        f.pack();
+        f.setState(JFrame.MAXIMIZED_BOTH);
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+    }
+ 
+    public static JComponent initSlider() {
+        JSLSlider slider=new JSLSlider();
+        slider.addSliderComponent(new JButton("JButton instance - component 1"));
+        slider.addSliderComponent(new JLabel("Long text JLabel instance - component 2"));
+        slider.addSliderComponent(new JTextField("JTextField instance - component 3"));
+        slider.refresh();
+        
+        return slider;
     }
 
 
